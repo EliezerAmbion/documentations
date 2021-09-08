@@ -1,0 +1,47 @@
+skip step 1 and 2 for ubuntu users
+
+Step 1 (Install WSL / Manual Installation) https://docs.microsoft.com/en-us/windows/wsl/install-win10
+Step 2 Install Ubuntu v 20 (Don't forget to restart before doing so)
+Step 3 Install asdf (https://asdf-vm.com/#/core-manage-asdf)
+Step 4 Bash
+a. echo ". $HOME/.asdf/asdf.sh" >> ~/.bashrc
+b. echo ". $HOME/.asdf/completions/asdf.bash" >> ~/.bashrc
+c. Restart the terminal
+Step 5 Ruby
+a. asdf plugin-add ruby
+b. sudo apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev
+c. asdf install ruby latest
+d. asdf global ruby <version>
+e. asdf reshim ruby
+f. ruby -v
+Step 6 Requirements for Node JS
+sudo apt-get install dirmngr
+sudo apt-get install gpg
+sudo apt-get install curl
+sudo apt-get install gawk
+Step 7 Node js
+a. asdf plugin add nodejs
+b. bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-previous-release-team-keyring'
+c. asdf install nodejs latest
+d. asdf global nodejs <version>
+e. asdf reshim nodejs
+Step 8 Yarn
+a. asdf plugin-add yarn
+b. asdf install yarn latest
+c. asdf global yarn <version>
+d. yarn -v
+e. asdf reshim yarn
+d. code ~/.asdfrc 
+    then a file will pop up. Paste
+        legacy_version_file = yes 
+            then save
+Step 9 Postogres
+a. Install postgres (https://github.com/smashedtoatoms/asdf-postgres)
+b. follow steps 2 and 3
+c. asdf plugin-add postgres
+d. asdf install postgres latest
+e. asdf global postgres <version>
+f. asdf reshim postgres
+g. postgres -V
+pg_ctl start
+createdb default
