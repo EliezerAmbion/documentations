@@ -1,0 +1,23 @@
+move by word - w W b B
+
+move to the beginning of the line - 0
+
+move to the end of the line - $
+
+move to the top of the file - gg
+
+move to the bottom of the file - G.
+
+move down one page - ctrl + f
+
+move up one page - ctrl + b
+
+To go to a specific line - number + gg or G. Ex: 20gg or 20G.
+
+You can also use line mode to go to a specific line. Ex: :5 and hit enter.
+
+You can also use line mode to go to the bottom of the file. :$ is the syntax to go to the bottom because, in a regular expression, $ means the end.
+
+If you want to know how many lines are in the file - ctrl + g
+
+Remember​ ​that the​​ tildes​ ​represent​ lines​ beyond​ ​the​​ end​ of​ the file.

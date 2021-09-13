@@ -1,0 +1,34 @@
+JUST USE THIS INSTEAD TO BE SAFE:
+
+x - delete a letter
+
+X - delete a letter before the cursor
+
+dw - delete a word
+
+dd - delete the entire line no matter where your cursor is
+
+
+NOTE:
+
+d - the delete operator
+
+you can use this plus the motion you want to delete.
+
+Ex:
+
+dw - delete word
+
+dk - delete line upward
+
+dj - delete line downward
+
+d0 - delete line from cursor to the beginning of the line
+
+d$ - delete line from cursor to the end of the line - shortcut is D
+
+
+
+you can also do the operator[count]{motion}
+
+Ex: d5w - delete 5 words from the cursor
