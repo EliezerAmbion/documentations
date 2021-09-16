@@ -6,7 +6,11 @@ X - delete a letter before the cursor
 
 dw - delete a word
 
+dW - delete a word including the punctuation mark
+
 dd - delete the entire line no matter where your cursor is
+
+2dd - delete 2 entier lines
 
 
 NOTE:

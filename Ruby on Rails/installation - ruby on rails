@@ -3,6 +3,7 @@ skip step 1 and 2 for ubuntu users
 Step 1 (Install WSL / Manual Installation) https://docs.microsoft.com/en-us/windows/wsl/install-win10
 Step 2 Install Ubuntu v 20 (Don't forget to restart before doing so)
 Step 3 Install asdf (https://asdf-vm.com/#/core-manage-asdf)
+a. link to watch asdf installation: https://www.youtube.com/watch?v=njM3-eejlho&t=73s
 Step 4 Bash
 a. echo ". $HOME/.asdf/asdf.sh" >> ~/.bashrc
 b. echo ". $HOME/.asdf/completions/asdf.bash" >> ~/.bashrc
