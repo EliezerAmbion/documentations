@@ -1,0 +1,36 @@
+INSERTING:
+
+i - insert mode in the current cursor.
+I - insert from the beginning of the line.
+a - insert mode, append one character.
+A - insert from the end of the line.
+o - insert underneath the line.
+O - insert on top on the line.
+
+
+REPLACING:
+
+r - replace one character.
+R - replace the words as you type.
+
+
+CHANGING:
+
+cw - delete a word and then insert mode.
+c2W - delete 2 words and then insert mode.
+C or c$ - delete the line from the cursor and then insert mode.
+cc - delete the entire line and then insert mode.
+~ - will change lowercase letter to uppercase.
+g + ~ + w - will change the word to lowercase to uppercase.
+g + U + w - force change the word to uppercase (lowercase u for lowercase)
+g + U + U - force change entire line to uppercase (lowercase u for lowercase)
+J - will join 2 lines together.
+3J - will join 3 lines together.
+
+
+Repeat a command as many times as you want
+
+Ex type:
+a) 80 + i + * + esc - this will create 80 * on that line.
+
+b) 4 + o + # + esc - this will create 4 lines with #

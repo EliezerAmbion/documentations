@@ -1,0 +1,23 @@
+if you want to check the documentation or help
+type :help or :h <name of what you want to read>
+Ex: :help linewise, :h linewise
+
+If you don't want to type, just put the cursor under the word and type:
+ctrl + ]
+
+In the dox, the words inside the opening and closing brackets are optional.
+Ex: :q[uit], you can type :q or :quit
+
+You can go to your file and edit while the help window is open. Just type:
+ctrl + w + w
+
+
+Let's say you want to look at the documentation for a command,
+but you're not quite sure what the entire command is in this situation.
+You can use command-line completion
+
+type :h followed by the start of the command you're looking for and then type control D.
+
+Ex: :h :q + ctrl d
+
+You can also :h :q + tab

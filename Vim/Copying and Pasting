@@ -1,0 +1,27 @@
+NOTE:
+
+cut = delete (d)
+
+copy = yank (y)
+
+paste = put (p)
+
+
+d and x are both cuts feature just link ctrl + x in windows.
+
+
+PASTING:
+
+pasting after the cursor - p
+
+pasting before the cursor - P
+
+
+
+COPYING:
+
+copy a letter - y
+
+copy a word - yw
+
+copy the entire line - yy
