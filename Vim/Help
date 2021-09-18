@@ -21,3 +21,11 @@ type :h followed by the start of the command you're looking for and then type co
 Ex: :h :q + ctrl d
 
 You can also :h :q + tab
+
+
+OPTIONS:
+You can edit the options by typing the set and then the option you want to change.
+
+Ex: set ruler or set noruler
+
+the above example is the pattern for options. set <option> for on, and set <no-option> for off
