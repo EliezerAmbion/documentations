@@ -21,7 +21,8 @@ c2W - delete 2 words and then insert mode.
 C or c$ - delete the line from the cursor and then insert mode.
 cc - delete the entire line and then insert mode.
 ~ - will change lowercase letter to uppercase.
-g + ~ + w - will change the word to lowercase to uppercase.
+g~~ - switch the case of the entire line.
+g + ~ + w - switch the case of a word.
 g + U + w - force change the word to uppercase (lowercase u for lowercase)
 g + U + U - force change entire line to uppercase (lowercase u for lowercase)
 J - will join 2 lines together.

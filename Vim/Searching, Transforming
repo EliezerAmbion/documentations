@@ -1,0 +1,23 @@
+SEARCHING:
+
+f{char} - search forward
+
+F{char} - search backwards
+
+t{char} - search BEFORE the char
+
+T{char} - search AFTER the char
+
+; - repeats the search in the same direction that it was started
+
+, - repeats it backward
+
+/{word} - search for the word (n - next, N - back)
+
+
+
+TRANSFORM:
+
+:s/old/new/g - change the searched word of the entire LINE from the old word to the new word.
+
+:%s/old/new/g - change the searched word of the entire FILE from the old word to the new word.

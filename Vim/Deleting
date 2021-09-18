@@ -1,16 +1,6 @@
-JUST USE THIS INSTEAD TO BE SAFE:
-
 x - delete a letter
 
 X - delete a letter before the cursor
-
-dw - delete a word
-
-dW - delete a word including the punctuation mark
-
-dd - delete the entire line no matter where your cursor is
-
-2dd - delete 2 entier lines
 
 
 NOTE:
@@ -21,7 +11,9 @@ you can use this plus the motion you want to delete.
 
 Ex:
 
-dw - delete word
+dw - delete from cursor to the end of the word
+
+dW - delete from cursor to the end of the word including the punctuation mark
 
 dk - delete line upward
 
@@ -30,6 +22,10 @@ dj - delete line downward
 d0 - delete line from cursor to the beginning of the line
 
 D or d$ - delete line from cursor to the end of the line
+
+dd - delete the entire line no matter where your cursor is
+
+2dd - delete 2 entire lines
 
 
 
