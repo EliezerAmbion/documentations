@@ -1,0 +1,36 @@
+TEXT OBJECTS:
+
+{ operator }{ a }{ object }
+{ operator }{ i }{ object }
+
+d - delete
+c - change
+y - yank
+
+a - means around or all (including)
+i - means inner (NOT including)
+
+w - word
+s - sentence
+p - paragraph
+t - tag
+[ - array
+{ - curly braces or objects
+
+
+DELETE NO MATTER WHERE THE CURSOR IS:
+daw - Deletes All Word (including space)
+daW - Deletes All Word including punctuation mark  (including space)
+diw - Deletes Inner Word (not including the space)
+diW - Deletes Inner Word including punctuation mark (not including the space)
+das - Deletes A sentence.
+dis - Deletes Inner Sentence
+dap - Deletes A Paragraph.
+dip - Deletes Inner Paragraph
+da[ or ] - Deletes the content of the array including the brackets
+di[ or ] - Deletes the content of the array NOT including the brackets
+dat - Deletes the content including the tag
+dit - Deletes the content NOT including the tag
+
+
+YANK and CHANGE, same as DELETE
