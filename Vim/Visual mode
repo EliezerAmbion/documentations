@@ -1,0 +1,42 @@
+v - characterwise visual mode
+V - linewise visual mode
+ctrl + v - blockwise visual mode or vertical visual mode
+
+
+SAMPLES:
+vaw - highlight the word including the space
+viw - highlight the word
+vap - highlight the paragraph including the space
+vip - highlight the paragraph
+
+
+
+TIPS:
+VG - highlight everything
+gv - highlight again the same line or block
+ctrl + v + j + $ + A - append word/s to every highlighted lines
+
+
+
+NOTE:
+Only capitals A and I are allowed in visual mode
+
+In visual mode, pressing o will put your cursor at the beginning or at the end of your highlighted words.
+
+
+NOT IN VISUAL MODE
+
+>i{ - indent all the lines inside the {} to the right
+<i{ - indent all the lines inside the {} to the left
+
+
+IN VISUAL MODE
+
+> - indent to the right
+< - indent to the left
+
+
+to center a line/s:
+select all the lines you want to center and type :'<,>'center
+
+

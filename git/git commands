@@ -1,0 +1,2 @@
+Did you push a commit by mistake?
+- git revert HEAD
