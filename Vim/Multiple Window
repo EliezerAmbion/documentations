@@ -1,0 +1,57 @@
+Open multiple files by adding the files, ex:
+vim buf-add.txt buf-bed.txt.
+
+You can also use:
+vim buf*
+
+
+to view all the open buffers:
+:buffers or ls + enter
+
+
+to go to the file you want to edit:
+:buffer + <number of the file or the file name> or
+:b<num of file> ex: b3
+
+:bn - next file
+:bp - previous file
+:bf - first file
+:bl - last file
+wall - write(save) all the files
+qall! - abandon all the changes
+
+
+
+MULTIPLE WINDOW:
+
+:sp - horizontal split
+:vs - vertical split
+:on - only screen
+
+OR:
+
+ctrl + w, release w, then press s - split horizontally
+ctrl + w, release w, then press v - split vertically
+ctrl + w, release w, then press q - quit window
+ctrl + w, release w, then press o - only screen
+
+
+SWITCH WINDOW:
+ctrl + w + w - switch window
+OR
+ctrl + j or k or l or h - switch window up or down or right or left
+
+
+WINDOW SIZE:
+ctrl + w + +(plus sign) or -(minus sign) - increase or decrease window height
+ctrl + w + > or < -  increase or decrease window width
+ctrl + w + _ - maximize the height
+ctrl + w + | - maximize the width
+ctrl + w + = - equal size to all window
+
+
+ctrl + w, release w, then press r or R - rotate
+
+ctrl + w, release w, then press J, K, L, H - move current window depending on where you put it and make it full width or height.
+
+
