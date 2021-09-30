@@ -1,0 +1,13 @@
+NODEJS:
+1) nodejs -> https://nodejs.org/en/
+a) dowload the latest stable  version
+
+ANGULAR
+1) npm install -g @angular/cli
+
+CREATE NEW ANGULAR PROJECT:
+1) ng new project-name
+
+OPEN THE SERVER:
+- ng serve
+- open the browser to localhost:4200

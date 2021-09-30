@@ -1,0 +1,10 @@
+event binding: ex: <button (click)="onAddPost"></button>
+
+string interpolation: ex: <p>{{ newPost }}</p> // newPost is a property in .ts file
+
+property binding: ex: <input [value]="newPost"></input> // newPost is a property in .ts file. You should put the property in quotes or double quotes
+
+two way binding: ex: <input [(ngModel)]="enteredValue"></input> //ngModel is the syntax for 2 ways binding
+- you should put this: import { FormsModule } from '@angular/forms' to app.module.ts
+- and add an element: FormsModule to the imports array
+

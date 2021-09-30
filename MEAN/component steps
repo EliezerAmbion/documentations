@@ -1,0 +1,46 @@
+In creating components, there is a three steps process:
+
+1. Create a component
+a. create a file post-create.component.ts
+
+EX component.ts
+
+import { Component } from '@angular/core'; // this is the decorator you should import to make call the @Component
+
+@Component({ // this is the decorator function for component
+  selector: 'app-post-create',
+  templateUrl: './post-create.component.html',
+})
+export class PostCreateComponent {} // export the class so that the angular can see it
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+2. Register it in a module
+a. in app.module.ts
+
+EX app.module
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { PostCreateComponent } from './posts/post-create/post-create.component'; // import what you export
+
+@NgModule({
+  declarations: [
+  AppComponent,
+  PostCreateComponent // put this here so that the component is registered
+  ],
+  imports: [
+  BrowserModule,
+  AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+3. Add an element in an HTML markup
