@@ -1,2 +1,14 @@
 Did you push a commit by mistake?
 - git revert HEAD
+
+stach the current work
+- git stash save "saved work"
+
+check the stash list
+- git stash list
+
+get the stash, will pop the last stash
+- git stash pop
+
+check the changes
+- git diff
