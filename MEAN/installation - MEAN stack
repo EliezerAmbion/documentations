@@ -11,3 +11,7 @@ CREATE NEW ANGULAR PROJECT:
 OPEN THE SERVER:
 - ng serve
 - open the browser to localhost:4200
+
+
+ADD ANGULAR MATERIAL:
+ng add @angular/material

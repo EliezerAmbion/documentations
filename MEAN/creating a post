@@ -1,0 +1,125 @@
+CREATING A POST:
+
+REMEMBER:
+- In order to pass data outside the component, use the @Output
+and use the @Input so you can get what will the @Output will emit
+
+- The EventEmitter is used when you want to create custom events
+and the syntax is, EX: @Output() postCreated = new EventEmitter();
+and you should import EventEmitter to @angular/core
+
+
+1. in post-create.ts
+
+a. create variables for the html to render:
+enteredTitle = '';
+enteredContent = '';
+@Output() postCreated = new EventEmitter();
+// the @Output() will make the app.component/ parent component use what you will emit
+// the new EventEmiiter() will make the postCreated be an event that you can use in the app.component/ parent component
+// import to '@angular/core': EventEmitter 
+
+b. create a method so that you can emit some data:
+onAddPost() {
+    const post = {
+      title: this.enteredTitle,
+      content: this.enteredContent,
+    };
+    
+    this.postCreated.emit(post);
+  }
+}
+__________________________________________________________________________________________________________________
+
+
+2. in post-create.html
+a. use the variables you created in post-create.ts
+<mat-card>
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="enteredTitle" />
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput rows="4" [(ngModel)]="enteredContent"></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="warn" (click)="onAddPost()">
+    Save Post
+  </button>
+</mat-card>
+__________________________________________________________________________________________________________________
+
+
+3. in app.component.html/ parent component
+
+a. use the custom event you just created: (postCreated)
+<app-post-create (postCreated)="onPostAdded($event)"></app-post-create>
+// the $event is the data you emitted from postCreated event
+// create an onPostAdded() method on the app.component.ts
+__________________________________________________________________________________________________________________
+
+
+
+4. in app.component.ts
+
+a. create a variable to store what the post-create will emit:
+  storedPosts: any = [];
+
+b. create the method onPostAdded so you can push the emitted data to storedPosts:
+  
+onPostAdded(post: any) {
+  this.storedPosts.push(post);
+  }
+__________________________________________________________________________________________________________________
+
+
+
+5. in post-list.ts
+
+a. create an @Input()
+@Input() posts: any = [];
+__________________________________________________________________________________________________________________
+
+
+6. back to app.component.html
+
+a. use the property @Input you just created: (posts) 
+<app-post-list [posts]="storedPosts"></app-post-list>
+__________________________________________________________________________________________________________________
+
+
+7. in post-list.html
+
+a. use the keys in the emitted data: (title and content)
+<mat-accordion multi="true" *ngIf="posts.length > 0">
+  <mat-expansion-panel *ngFor="let post of posts">
+    <mat-expansion-panel-header>
+      <h2>
+        {{ post.title }}
+      </h2>
+    </mat-expansion-panel-header>
+    
+    <p>{{ post.content }}</p>
+  </mat-expansion-panel>
+</mat-accordion>
+__________________________________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

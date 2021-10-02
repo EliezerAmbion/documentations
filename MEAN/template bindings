@@ -1,10 +1,31 @@
-event binding: ex: <button (click)="onAddPost"></button>
+ONE WAY BINDING:
 
-string interpolation: ex: <p>{{ newPost }}</p> // newPost is a property in .ts file
+1. PROPERTY BINDING: used to transfer data from MODEL to the VIEW,
+and when something changes in the MODEL, the VIEW gets notified and also changes.
 
-property binding: ex: <input [value]="newPost"></input> // newPost is a property in .ts file. You should put the property in quotes or double quotes
+EX: <input [value]="newPost"></input>
+- newPost is a property in .ts file. You should put the property in quotes or double quotes
+_________________________________________________________________________________________________
 
-two way binding: ex: <input [(ngModel)]="enteredValue"></input> //ngModel is the syntax for 2 ways binding
-- you should put this: import { FormsModule } from '@angular/forms' to app.module.ts
-- and add an element: FormsModule to the imports array
 
+2. EVENT BINDING: used to transfer data from VIEW to the MODEL / COMPONENT CLASS,
+and when something changes in the VIEW, the MODEL gets notified and also changes.
+
+EX: <button (click)="onAddPost()"></button>
+-onAddPost() is a function/method in the model/component class
+_________________________________________________________________________________________________
+
+
+
+TWO WAY BINDING: this combines the property binding and event binding in one.
+- ngModel is the syntax for 2 ways binding
+
+EX: <input [(ngModel)]="enteredValue"></input> 
+- you should put this to app.module.ts: import { FormsModule } from '@angular/forms'
+- and add an element to the imports array: FormsModule
+_________________________________________________________________________________________________
+
+
+
+string interpolation: ex: <p>{{ newPost }}</p>
+- newPost is a property in .ts file
