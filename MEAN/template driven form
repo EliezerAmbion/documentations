@@ -1,0 +1,98 @@
+Angular makes it easy to work with forms
+
+First, use forms semantically <form></form>
+wrap the form field including the button
+
+When it detects a form element and we get the forms module included in the app.module, EX: FormsModule,
+it will automatically create a javascript object behind the scenes which represents the form tag 
+where you can easily register inputs: <input></input> as controls of which it will keep track of 
+where it will then store the values of these controls and where we can easily add validation to and 
+submit the form and use the value of that form.
+
+For that you can get rid of two-way binding and instead add ngModel as a directive without the two-way binding. [(ngModel)]
+Put the ngModel to the input tag, this will register the input as a control to the form behind the scenes.
+However, angular needs to know how to name this input, so we need to add the normal name attribute and give this name
+of your choice. EX: name="title"
+With this, angular is aware of this/ these control/s.
+
+Next is to put type="submit" in the button and omit the click event if you have it.
+Because you are in the form, the default html behaviour is that a button with type submit in a form will submit that form, 
+and submitting will trigger a special event to which we can listen to, the submit event.
+Put the submit event inside the form tag. EX: <form (submit)="onAddPost()">.
+onAddPost() is the method you created in the ts file.
+
+YOU WILL NOW DO THIS WHENEVER YOU ARE DOING A FORM. With this, angular will prevent the default which would be
+that the form gets sent to the server, you don't want to do that default behaviour, you have to handle this entirely in javascript!
+
+Now you need to get access to the values inside of that form, and this can be done with the help of a local reference.
+You can add a reference to the form in form tag and you can name this however you want, EX: #postForm.
+IMPORTANT: you don't just add it like #postForm because this would give you access to the html element object,
+you have to assign a value here and that value has to be "ngForm". Ex: #postForm="ngForm".
+ngForm is a directive angular implicitly attaches to the form element for us and what this syntax does is it
+gives us access to this object, the form object angular created for us and manages for us behind the scenes.
+
+So now #postForm gives us access to that angular form object and we can pass #postForm as an argument to onAddPost. 
+EX: <form (submit)="onAddPost(postForm)">.
+
+In onAddPost method, you now know that you received the form which is of type ngForm. Syntax: onAddPost(form: ngForm).
+Add an import { ngForm } from "@angular/forms";
+
+Now the form can detect whether it's valid or not and it also gives you access to the values of the form.
+On the form, there is a VALUE property and on that VALUES property, you could access things like title and content.
+title and content is the VALUE of the name attribute you have defined in the input tag or/ and textarea.
+
+EX method:
+
+onAddPost(form: NgForm) {
+    const post: Post = {
+      title: form.value.title,
+      content: form.value.content,
+    };
+    this.postCreated.emit(post);
+  }
+
+
+To add validations in the form, you need to add the required attribute in the input tag. With this, angular is aware
+whether the form is valid or not. You can also add minlength and ect.... EX: minlength="5".
+But this will still submit whether it's valid or not. To FIX THIS, we need to add a logic in the onAddPost method.
+
+EX:
+
+onAddPost(form: NgForm) {
+    if (form.invalid) { // the logic here is that if it's invalid, just return nothing
+      return;
+    }
+
+    const post: Post = {
+      title: form.value.title,
+      content: form.value.content,
+    };
+    this.postCreated.emit(post);
+  }
+
+
+To add an error message, you need to add another local reference as an attribute inside the input tag, any name you want, 
+syntax: #name="ngModel".
+EX: #title="ngModel".
+
+The ngForm gave you access to the entire form, the ngModel will give you access to the data managed for the input
+behind the scenes. With this, you can use it in the error message dynamically.
+You have to put an error container. You can use a div or the angular material and put it under the input or textarea element. 
+EX:<mat-error *ngIf="title.invalid">Please enter a Title!</mat-error>
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
