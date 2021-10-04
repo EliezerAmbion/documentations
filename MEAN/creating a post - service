@@ -1,0 +1,108 @@
+A service is a class which you add to your angular application, which you let inject by angular into components, 
+which is able to centralize some tasks and provide easy access to data from within different components without 
+property and event binding.
+
+First, create a service file. You can manually create this or use the CLI
+CLI command is: ng g s foldername/name-of-service.
+EX: ng g s posts/posts
+This will create a service file/s inside your posts folder. OUTPUT: posts.service.ts
+
+A service is just a typescript class, now in there, you want to create a property to store a list of posts. 
+EX: private posts: Post[] = [];
+Don't forget to import the Post model. import { Post } from '......'
+NOTE: the property is now private which means you CAN'T EDIT IT FROM OUTSIDE.
+
+Now this posts service, if we add it to another file, you can't access posts, instead you have to create a new method, 
+which allows someone who's interested to retrieve the posts.
+
+EX:
+getPosts(){
+  return [...this.posts]; // you can access private property because you are accessing the it from the same file.
+}
+NOTE: you don't want to copy the original array because arrays and objects in js and ts is a reference type.
+NOTE: reference types are types where if you copy it, you don't really copying it. The object in memory will stay
+the same, you just copied the address. To make a true copy of the posts, you will use the spread operator.
+So you are creating a new array with the old objects and therefore the array has been copied.
+If you now edit the array, if you add new elements or remove elements from within another component, this will NOT affect 
+the original array.
+
+Add another method of adding post where you have to expect an argument of post.
+
+EX method:
+addPost(title: string, content: string){
+  const post: Post = { title: title, content: content }
+  this.posts.push(post)
+}
+
+Now you could use these methods to your components without having to pass data around with property and event binding.
+You just need to get the service into these components and this is done with a feature called DEPENDENCY INJECTION.
+Now this means that you simply go to the component where you want to use the service and you add a constructor.
+NOTE: constructor is simply is a function which is called whenever angular creates a new instance of the component.
+
+EX:
+export class PostListComponent {
+  constructor(){}
+}
+
+In the constructor you can expect arguments but since ANGULAR IS THE ONE CREATING NEW INSTANCES OF THE COMPONENT, 
+angular has to give you these arguments and angular has a complex dependency injection system which is able to actually 
+FIND OUT WHAT YOU WANTED AND GIVE YOU THAT.
+
+In the constructor argument, you define the service you want to have and name it what you want. EX: constructor(postsService)
+Now you have to define the type to give angular a hint about what it actually should give you. EX: constructor(postsService: PostsService)
+lowercase postsService is an instance, and the name you defined. Uppercase PostsService is the type of service.
+NOTE: import { PostsService } from '...path'
+
+This will tell angular that you want to have a postsService instance because you set the type and angular will try its best 
+to give you an instance of this service.
+
+You can also add a property to store this in a property of your class. EX: postService: PostsService;
+And then in the constructor, add: this.postsService = postsService;
+
+EX:
+export class PostListComponent {
+  postService: PostsService;
+
+  constructor(postService: PostsService){
+    this.postsService = postsService;
+  }
+}
+
+
+IMPORTANT: typescript offer a shorcut for this so that you don't need to repeat the same postService: PostsService.
+The SHORTCUT FOR THIS IS ADDING A PUBLIC KEYWORD. The keyword will automatically create a new property in the 
+component and store the incoming value in that property.
+
+EX shorcut:
+export class PostListComponent {
+
+  constructor(public postService: PostsService){}
+}
+
+Now that's all nice and angular will try to fulfill this requirement but actually, it won't be aware of the posts.service 
+because it doesn't scan all your files. So you have to make angular aware. If you use CLI, and I ADVICE YOU TO ALWAYS USE THE
+CLI, it will create an @Injectable. 
+
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+})
+
+Angular is now aware of the service and IT WILL FIND IT AND WILL ONLY CREATE ONE INSTANCE OF THE SERVICE FOR THE ENTIRE APP.
+So wherever you inject this, you're going to use the same instance and this is really important because
+since we manage our posts array in the service, having multiple instances would be bad because you would
+have multiple copies with different arrays in there.
+
+Now, all you have to do is to call getPosts
+
+
+
+
+
+
+
+
+
+
+
