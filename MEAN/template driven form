@@ -5,7 +5,7 @@ wrap the form field including the button
 
 When it detects a form element and we get the forms module included in the app.module, EX: FormsModule,
 it will automatically create a javascript object behind the scenes which represents the form tag 
-where you can easily register inputs: <input></input> as controls of which it will keep track of 
+where you can easily register inputs: <input></input> as controls of which it will keep track of, 
 where it will then store the values of these controls and where we can easily add validation to and 
 submit the form and use the value of that form.
 
@@ -19,17 +19,18 @@ Next is to put type="submit" in the button and omit the click event if you have 
 Because you are in the form, the default html behaviour is that a button with type submit in a form will submit that form, 
 and submitting will trigger a special event to which we can listen to, the submit event.
 Put the submit event inside the form tag. EX: <form (submit)="onAddPost()">.
-onAddPost() is the method you created in the ts file.
+onAddPost() is the method you created in the .ts file.
 
-YOU WILL NOW DO THIS WHENEVER YOU ARE DOING A FORM. With this, angular will prevent the default which would be
-that the form gets sent to the server, you don't want to do that default behaviour, you have to handle this entirely in javascript!
+With this, angular will prevent the default which would be that the form gets sent to the server, 
+you don't want that default behaviour, you have to handle this entirely in javascript!
 
-Now you need to get access to the values inside of that form, and this can be done with the help of a local reference.
-You can add a reference to the form in form tag and you can name this however you want, EX: #postForm.
+NOW YOU NEED TO GET ACCESS TO THE VALUES INSIDE OF THAT FORM, and this can be done with the help of a LOCAL REFERENCE.
+You can add a reference to the form in the form tag and you can name this however you want, EX: #postForm.
+
 IMPORTANT: you don't just add it like #postForm because this would give you access to the html element object,
 you have to assign a value here and that value has to be "ngForm". Ex: #postForm="ngForm".
-ngForm is a directive angular implicitly attaches to the form element for us and what this syntax does is it
-gives us access to this object, the form object angular created for us and manages for us behind the scenes.
+ngForm is a directive that angular implicitly attaches to the form element for us and what this syntax does is it
+GIVES US ACCESS TO THIS OBJECT, the form object that angular created for us and manages for us behind the scenes.
 
 So now #postForm gives us access to that angular form object and we can pass #postForm as an argument to onAddPost. 
 EX: <form (submit)="onAddPost(postForm)">.
@@ -41,7 +42,7 @@ Now the form can detect whether it's valid or not and it also gives you access t
 On the form, there is a VALUE property and on that VALUES property, you could access things like title and content.
 title and content is the VALUE of the name attribute you have defined in the input tag or/ and textarea.
 
-EX method:
+EX function:
 
 onAddPost(form: NgForm) {
     const post: Post = {
@@ -79,9 +80,78 @@ The ngForm gave you access to the entire form, the ngModel will give you access 
 behind the scenes. With this, you can use it in the error message dynamically.
 You have to put an error container. You can use a div or the angular material and put it under the input or textarea element. 
 EX:<mat-error *ngIf="title.invalid">Please enter a Title!</mat-error>
+__________________________________________________________________________________________________________________________________
+
+EXAMPLE MARKUP:
+
+in the post-create.component.html:
+
+<mat-card class="my-card">
+  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        ngModel
+        name="title"
+        required
+        minlength="3"
+        #title="ngModel"
+      />
+      <mat-error *ngIf="title.invalid">Please Enter a Title!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea
+        matInput
+        rows="4"
+        ngModel
+        name="content"
+        required
+        #content="ngModel"
+      ></textarea>
+      <mat-error *ngIf="content.invalid">Please Enter the Content!</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Save Post</button>
+  </form>
+</mat-card>
 
 
- 
+
+
+
+in the post-create.component.ts
+
+import { Component, Output, EventEmitter } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Post } from '../post.model';
+
+@Component({
+  selector: 'app-post-create',
+  templateUrl: './post-create.component.html',
+  styleUrls: ['./post-create.component.css'],
+})
+export class PostCreateComponent {
+  enteredTitle = '';
+  enteredContent = '';
+  @Output() postCreated = new EventEmitter<Post>();
+
+  constructor() {}
+
+  onAddPost(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+
+    const post: Post = {
+      title: form.value.title,
+      content: form.value.content,
+    };
+    this.postCreated.emit(post);
+  }
+}
+
 
 
 

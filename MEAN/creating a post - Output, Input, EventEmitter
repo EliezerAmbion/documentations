@@ -1,5 +1,3 @@
-CREATING A POST:
-
 REMEMBER:
 - In order to pass data outside the component, use the @Output
 and use the @Input so you can get what will the @Output will emit
@@ -52,7 +50,7 @@ ________________________________________________________________________________
 
 a. use the custom event you just created: (postCreated)
 <app-post-create (postCreated)="onPostAdded($event)"></app-post-create>
-// the $event is the data you emitted from postCreated event
+// the $event is the data you EMITTED AND RECEIVED from your custom event postCreated
 // create an onPostAdded() method on the app.component.ts
 __________________________________________________________________________________________________________________
 
