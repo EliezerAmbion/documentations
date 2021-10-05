@@ -12,13 +12,14 @@ EX: private posts: Post[] = [];
 Don't forget to import the Post model. import { Post } from '......'
 NOTE: the property is now private which means you CAN'T EDIT IT FROM OUTSIDE.
 
-Now this posts service, if we add it to another file, you can't access posts, instead you have to create a new method, 
-which allows someone who's interested to retrieve the posts.
+Now this posts service, if we add it to another file, you can't access the posts property, instead you have to 
+create a new method, which allows someone who's interested to retrieve the posts.
 
 EX:
 getPosts(){
-  return [...this.posts]; // you can access private property because you are accessing the it from the same file.
+  return [...this.posts]; // you can access private property because you are accessing it from the same file.
 }
+
 NOTE: you don't want to copy the original array because arrays and objects in js and ts is a reference type.
 NOTE: reference types are types where if you copy it, you don't really copying it. The object in memory will stay
 the same, you just copied the address. To make a true copy of the posts, you will use the spread operator.
@@ -50,7 +51,7 @@ FIND OUT WHAT YOU WANTED AND GIVE YOU THAT.
 
 In the constructor argument, you define the service you want to have and name it what you want. EX: constructor(postsService)
 Now you have to define the type to give angular a hint about what it actually should give you. EX: constructor(postsService: PostsService)
-lowercase postsService is an instance, and the name you defined. Uppercase PostsService is the type of service.
+NOTE: lowercase postsService is an instance, and the name you defined. Uppercase PostsService is the type of service.
 NOTE: import { PostsService } from '...path'
 
 This will tell angular that you want to have a postsService instance because you set the type and angular will try its best 
@@ -95,6 +96,31 @@ since we manage our posts array in the service, having multiple instances would 
 have multiple copies with different arrays in there.
 
 Now, all you have to do is to call getPosts
+_________________________________________________________________________________________________________________________________________
+
+SAMPLE SERVICE:
+
+import { Injectable } from '@angular/core';
+import { Post } from './post.model';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PostsService {
+  private posts: Post[] = [];
+
+  getPost() {
+    return [...this.posts];
+  }
+
+  addPost(title: string, content: string) {
+    const post: Post = { title: title, content: content };
+    this.posts.push(post);
+  }
+
+  constructor() {}
+}
+
 
 
 

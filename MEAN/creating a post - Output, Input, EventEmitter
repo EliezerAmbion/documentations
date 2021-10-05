@@ -1,6 +1,7 @@
 REMEMBER:
-- In order to pass data outside the component, use the @Output
-and use the @Input so you can get what will the @Output will emit
+- In order to pass data outside the component, YOU HAVE TO PASS IT TO THE PARENT COMPONENT FIRST 
+and use the @Output.
+- Use the @Input so you can get what will the @Output will emit.
 
 - The EventEmitter is used when you want to create custom events
 and the syntax is, EX: @Output() postCreated = new EventEmitter();

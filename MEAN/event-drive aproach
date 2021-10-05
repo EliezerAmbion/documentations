@@ -1,0 +1,149 @@
+You can reach out to your service and call the getPost by using lifecycle hooks.
+lifecycle hooks gets automatically executed when it creates a component, and one of them is onInit.
+
+We add it by implementing an interface and add it to the class. EX: export class PoslistComponent implements OnInit.
+When you implement a lifecycle hook, you are required to add a special method to your class. EX: ngOnInit(){}
+
+The ngOnInit is a function angular will automatically execute for us when it creates
+the component and it's recommended to do basic initialization tasks in ngOnInit.
+
+Inside the ngOnInit, set the property in your class to the service that injected in your constructor.
+EX:
+
+ngOnInit(){
+  this.posts = this.postsService.getPosts(); 
+}
+
+REMEMBER: postsService automatically created a property of the same name with the use of the shortcut, 
+REMEMBER: public keyword that was injected creates a shortcut.
+
+The posts are empty at the beginning though, so you will need to add posts.
+And for this, you can go to post-create.ts, and there you need to connect to your service as well with the use
+of dependency injection. In the constructor: EX: constructor(public postService: PostsService) {}
+
+WITH THE SERVICE NOW INJECTED TO THE COMPONENT, YOU CAN NOW REACH OUT TO THE SERVICE.
+
+NOTE: delete all the @Output, @Input, Event Emitter, and the imports for that them.
+
+Now, with event emitter deleted, instead of emitting, you will now simply call the service and the method of that 
+service you want to use and pass the arguments if there are any.
+
+EX:
+  onAddPost(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+
+    this.postsService.addPost(form.value.title, form.value.content);
+  }
+
+REMEMBER: you are calling addPost to your post-create component and getPosts to your post-list component.
+
+With this, in the post.service, you are connecting them. But this will not show anything yet, because
+in your method getPosts, you are just creating a copy of you posts using the spread operator. You can get rid 
+of the spread and return the original but that is NOT THE MOST EFFICIENT WAY. YOU MUST COPY THE PROPERTY
+TO AVOID UNWANTED MANIPULATION OF THE POSTS IN ANY COMPONENT WHICH IS FETCHING THE POSTS.
+
+The better way is to use an EVENT-DRIVEN APROACH. where you actively push the information about new posts
+being available to the components which are interested. With this, you have to use a feature provided by another 
+package which is not part of angular but a core dependency, the RXJS package.
+
+Rxjs is all about observables and this is a concept which can be a bit more complex to grasp,
+it's essentially about objects that help us pass data around.
+
+So we simply need to import something TO THE SERVICE FROM THAT RXJS PACKAGE to get started and that something
+is a subject. EX: import { Subject } from 'rxjs';
+
+Subject is essentially is an event emitter but one which is actually for broader usage 
+than the one angular ships with.
+
+And now you need create this subject as a private property too in the service and create a new instance of the subject. 
+EX: private postsUpdated = Subject<Post[]>()
+
+You now have a postsUpdated subject, use it in the addPost method.
+EX: this.postsUpdated.next()
+
+next will push new value, it emits a new value and this value is a copy of your posts after you updated them.
+
+EX method:
+  addPost(title: string, content: string) {
+    const post: Post = { title: title, content: content };
+    this.posts.push(post);
+    this.postsUpdated.next([...this.posts]); // copy of your posts
+  }
+
+You now need to listen to the subject. It's private so you can't directly access it to prevent other components 
+from emitting data with it. What you will add is a new method in the service, the name is up to you, 
+and in that method, you need to return this postUpdated.
+
+EX: 
+  getPostUpdateListener(){
+    return this.postsUpdated.asObservalble();
+  }
+
+and now it returns an object to which we can listen but where we can't emit.
+
+So now we got get postsUpdateListener, you can now listen to this to this subject.
+You do this by reaching out to the postService and use the method getPostUpdateListener and call subscribe.
+EX: this.postService.getPostUpdateLister().subscribe();
+
+So subscribe now sets up a subscription and subscribe actually takes three arguments, possible arguments.
+The first one is a function which gets executed whenever new data is emitted,
+the second argument will be called whenever an error is emitted, this will never happen here. 
+And the third argument will be a function that is called whenever the observable is completed, whenever 
+there are no more values to be expected, this will also never be the case here because it is an infinitely 
+living subject so to say, we can always create new posts.
+
+So we only add the first argument, a function which is called whenever a new value is received.
+The argument in subscribe is the post because in the post service, you are emitting your new posts, a copy of them.
+In the subscribe, set the posts equal to the posts you just received. This will update them whenever you 
+recveive a new value.
+
+EX method:
+  ngOnInit() {
+    this.posts = this.postService.getPost();
+    this.postService.getPostUpdateLister().subscribe((posts: Post[]) => {
+      this.posts = posts;
+    });
+  }
+
+IMPORTANT: the subscription doesn't cancel whenever the component is teared down. Meaning, when you add pages 
+and whenever the component is not part of the DOM, the subscriptions which you set up are also not living anymore,
+otherwise you create a memory leak. SO YOU WILL NEED TO STORE THAT SUBSCRIPTION IN A NEW PROPERTY which will be of types
+subscription. 
+
+In your component where you created the subscribe, import { Subscription } from 'rxjs';
+And then create a new private property which is of type Subscription. EX: private postsSub: Subscription | any;
+Now you need to set this in ngOnInit method.
+
+EX method:
+  ngOnInit() {
+    this.posts = this.postService.getPost();
+
+    this.postsSub = this.postService // set it here
+      .getPostUpdateLister()
+      .subscribe((posts: Post[]) => {
+        this.posts = posts;
+      });
+  }
+ 
+Now we just need to unsubscribe whenever this component is destroyed and there is another lifecycle
+hook we can use for that, we add it by implementing onDestroy. EX: export class PostListComponent implements OnInit, OnDestroy
+This forces us to add one other method, the ngOnDestroy method, which is called whenever this component is 
+about to get removed. And there you need to reach out to your postsSub and call unsubscribe().
+
+EX method:
+  ngOnDestroy() {
+    this.postsSub.unsubscribe();
+  }
+
+
+
+
+
+
+
+
+
+
+
