@@ -1,0 +1,46 @@
+FUNDAMENTALS OF ANGULAR
+-section for beginners
+
+1. ANGULAR CLI - is a command line interface tool that you can use to create a brand new angular project with just one command in your terminal. Apart from this, CLI can generate application code and perform a variety of development task such as TESTING, BUNDLING, AND DEPLOYMENT.
+
+
+2. NgModules - are the basic building blocks of angular apps. Some modules come packets with the library and then there are user-defined modules.
+This is a way to run your code as silos which then interact with other modules to work as an application.
+
+
+3. Components - angular has a component based architecture. Every UI element you see in the broweser is defined by a component and most of your work in angular apps are writing components.
+
+	a. Class - A component is nothing but a class that controls the logic,
+	b. Template - A template that controls the view
+	c. Metadata - And some metadata that ties together the class the the template
+	
+	
+4. Template Syntax - is a simple html with some angular magic. You need to learn the syntax for the code you write in a template file.
+
+	a. Interpolation - the data flow is from a component class to the component template. Or from source to the view.
+	
+	b. Property Binding - same as interpolation but is more powerful. Used to transfer data from source/class to the template/view. When something
+	changes in the source/class, the template/view gets notified and also changes.
+	
+	c. Event Binding - allows you to listen for certain events such as keystrokes, clicks and etc. Used to transfer data from template/view to the
+	source/class.	When something changes in the template/view, the source/class gets notified and also changes.
+	
+	d. Two way Binding - this combines the property binding and event binding in one. A way to share data between a component class and its template.
+	This is widely used in writing forms in angular.
+	
+	e. Pipe Operator - lets your transform and displat data. Examples are diplaying currency value and formatting dates.
+	
+	f. Template Reference Variables - a reference to the DOM element within a template.
+
+
+
+
+
+
+
+
+
+
+
+
+

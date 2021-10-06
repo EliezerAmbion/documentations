@@ -15,3 +15,18 @@ OPEN THE SERVER:
 
 ADD ANGULAR MATERIAL:
 ng add @angular/material
+
+
+EXPRESS
+npm install --save express
+
+NODEMON
+a) npm i --save-dev nodemon
+b) go to package.json and under the scripts, add "start:server": "nodemon server.js"
+c) add an import to the server.js. const debug = require("debug")("node-angular");
+d) in your terminal type: npm run start:server
+
+BODY PARSER
+a) npm i --save body-parser
+b) add an import to the app.js. const bodyParser = require("body-parser");
+

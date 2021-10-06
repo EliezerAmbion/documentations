@@ -18,12 +18,12 @@ REMEMBER: postsService automatically created a property of the same name with th
 REMEMBER: public keyword that was injected creates a shortcut.
 
 The posts are empty at the beginning though, so you will need to add posts.
-And for this, you can go to post-create.ts, and there you need to connect to your service as well with the use
+And for this, you can go to post-create.ts, and there you need to connect to your service as well, with the use
 of dependency injection. In the constructor: EX: constructor(public postService: PostsService) {}
 
 WITH THE SERVICE NOW INJECTED TO THE COMPONENT, YOU CAN NOW REACH OUT TO THE SERVICE.
 
-NOTE: delete all the @Output, @Input, Event Emitter, and the imports for that them.
+NOTE: delete all the @Output, @Input, Event Emitter, and the imports for them.
 
 Now, with event emitter deleted, instead of emitting, you will now simply call the service and the method of that 
 service you want to use and pass the arguments if there are any.

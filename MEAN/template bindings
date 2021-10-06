@@ -18,7 +18,8 @@ ________________________________________________________________________________
 
 
 TWO WAY BINDING: this combines the property binding and event binding in one.
-- ngModel is the syntax for 2 ways binding
+- ngModel is the syntax for 2 way binding
+- this is mostly used in creating forms
 
 EX: <input [(ngModel)]="enteredValue"></input> 
 - you should put this to app.module.ts: import { FormsModule } from '@angular/forms'
