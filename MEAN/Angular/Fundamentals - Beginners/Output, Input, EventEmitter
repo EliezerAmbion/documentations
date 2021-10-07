@@ -1,6 +1,6 @@
 REMEMBER:
 @Input - is used to pass data from parent to child
-@Output - allows the child to emit and event to its parent with whcih the parent can then run some code.
+@Output - allows the child to emit and event to its parent with which the parent can then run some code.
 
 - The EventEmitter is used when you want to create custom events
 and the syntax is, EX: @Output() postCreated = new EventEmitter();
