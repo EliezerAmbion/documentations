@@ -1,0 +1,72 @@
+Directives - are custom HTML elements that you can be used in an angular app.
+
+
+1. Components - we talked about this in file number 3.
+_______________________________________________________________________________________________________
+
+2. Structural Directives - These directives change the DOM layout by adding and removing DOM elements
+	b1. ngIf
+		EX:
+		<div *ngIf="isTrue; then thenBlock; else elseBlock"></div>
+    <ng-template #thenBlock><h1> It's true</h1></ng-template>
+    <ng-template #elseBlock><h1> It's false </h1></ng-template>
+
+		NOTE: JUST USE THIS INSTEAD. COMPACT BUT MORE READABLE.
+    <h1 *ngIf="isTrue">It's true</h1>
+    <h1 *ngIf="!isTrue">It's false</h1>
+	
+		export class PostComponent {
+  		isTrue: boolean = !true;
+		}
+		
+	
+	b2. ngSwitch
+		EX:
+		<div [ngSwitch]="color">
+      <div *ngSwitchCase="'red'">You picked red</div>
+      <div *ngSwitchCase="'blue'">You picked blue</div>
+      <div *ngSwitchCase="'green'">You picked green</div>
+      <div *ngSwitchDefault>Pick again!</div>
+    </div>
+    
+    export class PostComponent {
+  		color = 'orange';
+		}
+	
+	
+	b3. ngFor
+		EX:
+		//This will render all the colors in the array
+		<div *ngFor="let color of colors">
+      <h3>{{ color }}</h3>
+    </div>
+
+
+		// This will be true to the last element
+    <div *ngFor="let color of colors; last as l">
+      <h3>{{ l }} {{ color }}</h3>
+    </div>
+
+
+		// You can use *ngIf to set what you want to be rendered
+    <div *ngFor="let color of colors; even as e">
+      <div *ngIf="e">
+        <h3>{{ color }}</h3>
+      </div>
+    </div>
+    
+
+    export class PostComponent {
+  		colors = ['red', 'blue', 'green', 'black'];
+		}
+
+	
+	
+_______________________________________________________________________________________________________
+
+3. Attribute Directive - Change the appearance or behaviour of element, component, or another directive.
+- we talked about this in file number 6.
+
+	c1. ngClass - built-in directive
+	c2. ngStyle - built-in directive
+

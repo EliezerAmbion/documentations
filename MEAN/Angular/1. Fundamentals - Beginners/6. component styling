@@ -1,0 +1,75 @@
+COMPONENT STYLING:
+
+1. CLASS BINDING:
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-post',
+  template: `
+    <h2>Welcome {{ name }}</h2>
+
+    <h2 [ngClass]="messageClasses">Playground</h2>
+  `,
+  styles: [
+    `
+      .text-success {
+        color: green;
+      }
+      .text-danger {
+        color: red;
+      }
+      .text-special {
+        font-style: italic;
+      }
+    `,
+  ],
+})
+export class PostComponent {
+  name = 'Eli';
+  successClass = 'text-success';
+  hasError = false;
+  isSpecial = true;
+  messageClasses = {
+    'text-success': !this.hasError,
+    'text-danger': this.hasError,
+    'text-special': this.isSpecial,
+  };
+}
+____________________________________________________________________________________________
+
+2. STYLE BINDING:
+EX:
+
+	<h2 [style.color]="hasError ? 'red' : 'green'">Test</h2>
+	<h2 [style.color]="highlightColor">Test</h2>
+	<h2 [ngStyle]="titleStyles">Test</h2>
+  
+	export class PostComponent {
+		hasError = true;
+		highlightColor = 'orange';
+
+		titleStyles = {
+			color: 'blue',
+			fontStyle: 'italic',
+		};
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

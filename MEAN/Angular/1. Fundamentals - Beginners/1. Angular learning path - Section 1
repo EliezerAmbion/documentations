@@ -11,12 +11,13 @@ This is a way to run your code as silos which then interact with other modules t
 3. Components - angular has a component based architecture. Every UI element you see in the broweser is defined by a component and most of your work in angular apps are writing components. You include each component as the custom HTML tag that gets rendered in the browser.
 
 	a. Class - A component is nothing but a class that controls the logic,
+	
 	b. Template - A template that controls the view
+	
 	c. Metadata - And some metadata that ties together the class the the template
 	
 	
-4. Template Syntax - is a simple html with some angular magic. You need to learn the syntax for the code you write in a template file.
-
+4. Template Binding - is a simple html with some angular magic. You need to learn the syntax for the code you write in a template file.
 	a. Interpolation - the data flow is from a component class to the component template. Or from source to the view.
 	
 	b. Property Binding - same as interpolation but is more powerful. Used to transfer data from source/class to the template/view. When something
@@ -28,13 +29,12 @@ This is a way to run your code as silos which then interact with other modules t
 	d. Two way Binding - this combines the property binding and event binding in one. A way to share data between a component class and its template.
 	This is widely used in writing forms in angular.
 	
-	e. Pipe Operator - lets your transform and displat data. Examples are diplaying currency value and formatting dates.
+	e. Pipe Operator - lets your transform and display data. Examples are diplaying currency value and formatting dates.
 	
 	f. Template Reference Variables - a reference to the DOM element within a template.
 
 
 5. Directives - are custom HTML elements that you can be used in an angular app.
-
 	a. Components - we talked about this above.
 
 	b. Structural Directives - These directives change the DOM layout by adding and removing DOM elements
@@ -49,12 +49,15 @@ This is a way to run your code as silos which then interact with other modules t
 
 6. Component Styling
 	a. Class Binding - for adding and removing class, we use the ngClass built-in directive.
+	
 	b. Style Binding - for adding and removing style, we use the ngStyle built-in directive.
 
 
 7. Component Interaction - since our entire app is built out of components, nested at vaious levels, we must understand how to pass data from one component to the other.
 	a. Input - is used to pass data from PARENT TO CHILD
+	
 	b. Output - allows the child to emit and event to its parent with which the parent can then run some code.
+	
 	c. Lifecycle Methods - you'l understand the different phases of a component and how to hook into those phases using the lifecylce hooks. EX: onInit
 	It is also in these hooks that you will execute code most of the time.
 

@@ -1,0 +1,125 @@
+TEMPLATE BINDINGS:
+
+1. STRING INTERPOLATION: data flow is from a component class to the component template. Or from source to the view.
+ex: <p>{{ newPost }}</p>
+- newPost is a property in .ts filethe 
+_________________________________________________________________________________________________
+
+
+2. PROPERTY BINDING: used to transfer data from SOURCE to the VIEW,
+and when something changes in the SOURCE, the VIEW gets notified and also changes.
+
+EX: <input [value]="newPost"></input>
+- newPost is a property in .ts file. You should put the property in quotes or double quotes
+_________________________________________________________________________________________________
+
+
+3. EVENT BINDING: used to transfer data from VIEW to the SOURCE / COMPONENT CLASS,
+and when something changes in the VIEW, the SOURCE gets notified and also changes.
+
+EX: <button (click)="onAddPost()"></button>
+- onAddPost() is a function/method in the model/component class
+- you can also put $event in the argument of the function
+_________________________________________________________________________________________________
+
+
+4. TWO WAY BINDING: this combines the property binding and event binding in one.
+- This allows you to update a property and at the same time display that value of that property.
+- ngModel is the syntax for 2 way binding
+- this is mostly used in creating forms
+- you should put this to app.module.ts: import { FormsModule } from '@angular/forms'
+- and add an element to the imports array: FormsModule
+
+EX: 
+	<input type="text" [(ngModel)]="binding" />
+	<p>{{ binding }}</p>
+	
+	export class PostComponent {
+  	binding: any;
+	}
+	
+OUTPUT: while typing in input, the value gets rendered in the view
+	
+_________________________________________________________________________________________________
+
+5. PIPE OPERATOR - lets your transform and display data. Examples are diplaying currency value and formatting dates.
+- transform data ONLY in the VIEW, you can't use it in the class.
+
+EX:
+	<h2>{{ name | lowercase }}</h2>
+	<h2>{{ name | uppercase }}</h2>
+	<h2>{{ message | titlecase }}</h2>
+	<h2>{{ name | slice: 3:5 }}</h2>
+	<h2>{{ person | json }}</h2>
+
+	<h2>{{ 5.67 | number: '1.2-3' }}</h2>
+	<h2>{{ 5.67 | number: '3.4-5' }}</h2>
+	<h2>{{ 5.67 | number: '3.1-2' }}</h2>
+
+	<h2>{{ 5.67 | percent }}</h2>
+	<h2>{{ 5.67 | currency: 'P' }}</h2>
+	<br />
+	<h2>{{ date }}</h2>
+	<h2>short</h2>
+	<h2>{{ date | date: 'short' }}</h2>
+	<h2>{{ date | date: 'shortDate' }}</h2>
+	<h2>{{ date | date: 'shortTime' }}</h2>
+	<br />
+	<h2>medium</h2>
+	<h2>{{ date | date: 'medium' }}</h2>
+	<h2>{{ date | date: 'mediumDate' }}</h2>
+	<h2>{{ date | date: 'mediumTime' }}</h2>
+	<br />
+	<h2>long</h2>
+	<h2>{{ date | date: 'long' }}</h2>
+	<h2>{{ date | date: 'longDate' }}</h2>
+    <h2>{{ date | date: 'longTime' }}</h2>
+    
+    
+	export class PostComponent {
+  name = 'TestWord';
+  message = 'this is a test sentence';
+
+  person = {
+    firstName: 'Juan',
+    lastName: 'Doe',
+  };
+
+  date = new Date();
+}
+
+_________________________________________________________________________________________________
+
+6. TEMPLATE REFERENCE VARIABLES - a reference to the DOM element within a template.
+
+EX:
+	<input type="text" #myInput />
+	<button (click)="log(myInput.value)">Test</button> OUTPUT: the value of the input
+	<button (click)="log(myInput)">Test</button> OUTPUT: the input field
+
+  log(value: any) {
+    console.log(value);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
